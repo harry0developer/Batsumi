@@ -1,0 +1,47 @@
+ 
+<ion-header>
+
+  <ion-navbar color="dark">
+    <ion-title>Jobs</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <!-- <button ion-button block (click)="postJob()">Post</button> -->
+  <div class="job" *ngFor="let job of jobs">
+    <ion-list *ngIf="job" (click)="jobDetails(job)">
+      <ion-item >
+        <ion-thumbnail item-start>
+          <img src="http://placehold.it/100x100">
+        </ion-thumbnail>
+        <h2>{{job.title}}</h2>
+        <p class="address">
+          <i class="fa fa-lg fa-clock-o" item-start></i>
+          {{job.address}}
+        </p>
+        <p text-wrap>{{job.tagline}}</p>
+      </ion-item>
+    </ion-list> 
+    <ion-list-header color="light">
+       <ion-grid>
+         <ion-row>
+           <ion-col col-4>
+              <i class="fa fa-lg fa-tag" item-start></i>
+              R{{job.salary}} {{job.frequency}}
+           </ion-col>
+           <ion-col col-4>
+              <i class="fa fa-lg fa-clock-o" item-start></i>
+              {{job.type}}
+           </ion-col> 
+           <ion-col col-4>
+              <i class="fa fa-calendar" item-start></i>
+              {{job.date_created}}
+           </ion-col> 
+         </ion-row>
+       </ion-grid>
+    </ion-list-header>
+  </div>
+          
+</ion-content>

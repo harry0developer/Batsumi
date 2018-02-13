@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-navbar> 
+      <ion-title >Filter</ion-title>
+      <ion-buttons end> 
+        <button ion-button  (click)="dismissModal()"> Cancel </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+  <ion-list radio-group [(ngModel)]="type">
+    <ion-item>
+      <ion-label>Jobs</ion-label>
+      <ion-radio value="jobs"></ion-radio>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Employees</ion-label>
+      <ion-radio value="users"></ion-radio>
+    </ion-item>
+    <button ion-button block [disabled]="!type" (click)="apply()"> Apply filter </button>
+  </ion-list>  
+
+
+</ion-content>

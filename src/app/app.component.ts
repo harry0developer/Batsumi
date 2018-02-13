@@ -4,7 +4,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { ProfilePage } from '../pages/profile/profile';
+import { AppointmentsPage } from '../pages/appointments/appointments';
+import { SettingsPage } from '../pages/settings/settings';
+import { TermsPage } from '../pages/terms/terms';
+import { LoginPage } from '../pages/login/login';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -12,27 +17,34 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
-
+  pages2: any = {}; 
+  profile: any;
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
-    ];
+  
+    this.pages2 = {
+      homePage: HomePage,
+      profilePage: ProfilePage,
+      appointmentPage: AppointmentsPage,
+      settingsPage: SettingsPage,
+      termsPage: TermsPage,
+      loginPage: LoginPage
+    } 
 
   }
 
   initializeApp() {
+
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.profile = JSON.parse(localStorage.getItem('user'));
     });
   }
 
@@ -41,4 +53,14 @@ export class MyApp {
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+
+  loadProfile(page,user){
+    this.nav.setRoot(page.component);
+  }
+
+  logout(){
+    localStorage.removeItem('user');
+    this.nav.setRoot(LoginPage);
+  }
+
 }

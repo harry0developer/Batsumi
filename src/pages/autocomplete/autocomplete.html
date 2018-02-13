@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-title>Enter address</ion-title>
+
+</ion-header>
+  
+<ion-header>
+  <ion-navbar color="dark"> 
+    <ion-title>Find Location</ion-title>
+    <ion-buttons end> 
+      <button ion-button (click)="dismiss()" >
+          Cancel
+        </button>
+    </ion-buttons>
+  </ion-navbar>
+    <ion-toolbar> 
+      <ion-searchbar #searchBar [(ngModel)]="autocomplete.query" [showCancelButton]="true"   (ionInput)="updateSearch()" placeholder="Search location..."></ion-searchbar>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let item of autocompleteItems" tappable   (click)="chooseItem(item)">
+        <i class="fa fa-map-marker" item-start></i>
+        {{ item }}
+    </ion-item>
+  </ion-list>
+
+  <ion-item *ngIf="!autocompleteItems || autocompleteItems.length < 1" no-lines class="search"> 
+    <img src="assets/search.svg" alt="">
+    <p>Start typing...</p>
+  </ion-item>
+</ion-content>

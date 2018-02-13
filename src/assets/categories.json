@@ -1,0 +1,14 @@
+[
+    {"name": "Plumbing"},
+    {"name": "Welding"},
+    {"name": "Cleaning"},
+    {"name": "Nanny"},
+    {"name": "Electrician"},
+    {"name": "Gardening"},
+    {"name": "Construction"},
+    {"name": "Mechanic"},
+    {"name": "Security"},
+    {"name": "Driver (Code 8)"},
+    {"name": "Driver (Code 10)"},
+    {"name": "Carpenter"} 
+]
