@@ -32,6 +32,7 @@ export class HomePage {
   searching: any = false;
   experience: any;
   hobbies: any;
+  raters: any;
 
   
   displayJobsSearch: boolean = false;
@@ -93,6 +94,7 @@ export class HomePage {
     }).catch(e => {
       console.log(e);
     });
+
   }
 
   insert(){

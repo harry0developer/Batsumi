@@ -26,6 +26,7 @@ export class DataProvider {
   jobs: any;
   hobbies: any;
   appointments: any = [];
+  raters: any;
   constructor(public http: Http, public loadingCtrl: LoadingController, public events: Events,
     public alertCtrl: AlertController, public toastCtrl: ToastController, 
     private actionSheetCtrl: ActionSheetController, private geolocation: Geolocation ) {
@@ -37,6 +38,7 @@ export class DataProvider {
       this.jobs = null;
       this.hobbies = null;
       this.appointments = null;
+      this.raters = null;
     }
     
  
@@ -132,6 +134,21 @@ export class DataProvider {
     });
   }
 
+  loadRaters() {
+    if (this.raters) {
+      return Promise.resolve(this.raters);
+    }
+    return new Promise(resolve => {
+      let headers = new Headers();
+      this.http.post(apiUrl + 'getRaters', null ,{headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          this.raters = data.data;
+          resolve(this.raters);
+        });
+    });
+  }
+
   getCountries() {
     if (this.nationalities) {
       return Promise.resolve(this.nationalities);
@@ -145,6 +162,7 @@ export class DataProvider {
         });
     });
   }
+
 
  
   getTitles() {
@@ -219,6 +237,8 @@ export class DataProvider {
 
     return userEdu;
   }
+
+
 
   getUserExperience(user){
     let userExp = [];

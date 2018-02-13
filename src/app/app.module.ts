@@ -22,7 +22,8 @@ import { PostJobsPage } from '../pages/post-jobs/post-jobs';
 import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 import { JobDetailsPage } from '../pages/job-details/job-details';
 import { SettingsPage } from '../pages/settings/settings';
- 
+import { StatsPage } from '../pages/stats/stats';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DataProvider } from '../providers/data/data';
@@ -50,7 +51,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     PostJobsPage,
     AutocompletePage,
     JobDetailsPage,
-    SettingsPage
+    SettingsPage,
+    StatsPage
   ],
   imports: [
     BrowserModule, 
@@ -77,7 +79,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     PostJobsPage,
     AutocompletePage,
     JobDetailsPage,
-    SettingsPage
+    SettingsPage,
+    StatsPage
   ],
   providers: [
     StatusBar,
