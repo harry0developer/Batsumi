@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -9,7 +9,7 @@ import { AppointmentsPage } from '../pages/appointments/appointments';
 import { SettingsPage } from '../pages/settings/settings';
 import { TermsPage } from '../pages/terms/terms';
 import { LoginPage } from '../pages/login/login';
-
+import { MyJobsPage } from '../pages/my-jobs/my-jobs';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,13 +22,19 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
   pages2: any = {}; 
   profile: any;
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar,
+    public ionEvents: Events, public splashScreen: SplashScreen) {
     this.initializeApp();
   
+    this.ionEvents.subscribe("user:loggedIn", (res) => {
+      this.profile = res;
+    });
+
     this.pages2 = {
       homePage: HomePage,
       profilePage: ProfilePage,
       appointmentPage: AppointmentsPage,
+      myJobsPage: MyJobsPage,
       settingsPage: SettingsPage,
       termsPage: TermsPage,
       loginPage: LoginPage

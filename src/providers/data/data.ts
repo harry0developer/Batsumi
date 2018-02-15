@@ -24,9 +24,11 @@ export class DataProvider {
   nationalities: any;
   titles:any;
   jobs: any;
+  appliedJobs: any;
   hobbies: any;
   appointments: any = [];
   raters: any;
+  ratings: any;
   constructor(public http: Http, public loadingCtrl: LoadingController, public events: Events,
     public alertCtrl: AlertController, public toastCtrl: ToastController, 
     private actionSheetCtrl: ActionSheetController, private geolocation: Geolocation ) {
@@ -39,6 +41,7 @@ export class DataProvider {
       this.hobbies = null;
       this.appointments = null;
       this.raters = null;
+      this.appliedJobs = null;
     }
     
  
@@ -56,6 +59,9 @@ export class DataProvider {
         });
     });
   }
+
+ 
+
 
   loadSkills() {
     if (this.skills) {
@@ -134,6 +140,21 @@ export class DataProvider {
     });
   }
 
+  loadAppliedJobs() {
+    if (this.appliedJobs) {
+      return Promise.resolve(this.appliedJobs);
+    }
+    return new Promise(resolve => {
+      let headers = new Headers();
+      this.http.post(apiUrl + 'getAppliedJobs', null ,{headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          this.appliedJobs = data.data;
+          resolve(this.appliedJobs);
+        });
+    });
+  }
+ 
   loadRaters() {
     if (this.raters) {
       return Promise.resolve(this.raters);

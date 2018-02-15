@@ -22,15 +22,13 @@ export class UserDetailsPage {
   profile: any; //me
   user: any; //current viewed profile
   page: string;
+  ratings: any;
 
   raters: any = [];
-
-  feedback: string = '';
-  rateState: boolean;
+  rateState: string;
   
   constructor(public navCtrl: NavController, public dataProvider: DataProvider, public ionEvents: Events,
     public modalCtrl: ModalController, public navParams: NavParams) {
-      
   }
 
   ionViewDidLoad() {
@@ -41,10 +39,7 @@ export class UserDetailsPage {
      * 61-80% - 4
      * 81-100% - 5
      */
-    this.dataProvider.loadRaters().then(res => {
-      this.raters = res;
-      console.log(res);
-    });
+   
 
     this.user = this.navParams.get('user');
     this.profile = JSON.parse(localStorage.getItem('user'));
@@ -52,67 +47,65 @@ export class UserDetailsPage {
     this.skills = this.dataProvider.getUserSkills(this.profile);
     this.experience = this.dataProvider.getUserExperience(this.profile);
     this.education = this.dataProvider.getUserEducation(this.profile);
-
-    this.rateState = this.hasRated(this.user);
+    
+    this.dataProvider.loadRaters().then(res => {
+      this.raters = res;
+      this.rateState = this.hasRated(this.user);
+    });
+ 
   }
 
+  checkRates(user, rate){
+    let rated: boolean = false;
+    if(this.raters){
+      this.raters.forEach(r => {
+        if(r.rater_id == this.profile.user_id && r.user_id == user.user_id){
+          let data = { rate: rate, date_rated: new Date(), rating_id: r.rating_id };
+          this.rateUser(data, 'updateRatings');
+          rated = true;
+        }
+      });
+      if(!rated){
+        let data = { rater_id: this.profile.user_id, user_id: user.user_id, rate: rate, date_rated: new Date()};
+        this.rateUser(data, 'newRatings');
+      }
+    }
+  }
+
+  rateUser(data, op){
+    
+    this.rateState = data.rate ;
+   
+    this.dataProvider.postData(data, op).then(res => {
+      let result;
+      result = res;
+      if(res && result.data){
+        this.raters = result.data;
+      }else{
+        console.log(res);
+      }
+    }).catch(err => {
+      console.log(err);
+    });
+
+  }
+ 
   loadUserMoreDetails(cat){
     let contactModal = this.modalCtrl.create(UserMoreDetailsPage, {user: this.profile, experience: this.experience, education: this.education, skills: this.skills, category: cat});
     contactModal.present();
   }
-
-  rateUser(user, rate){
-    let data = { rater_id: this.profile.user_id, user_id: user.user_id, rate: rate, date_rated: new Date()};
-    this.dataProvider.postData(data, "addRater").then(res => {
-      let result;
-      result = res;
-      if(res && result.data){
-        this.raters = result.data;
-        this.rateState = this.hasRated(this.user);
-        
-      }else{
-        console.log(res);
-      }
-    }).catch(err => {
-      console.log(err);
-    });
-  }
-
-  updateRating(user){
-    
-    let rating_id;
-    this.raters.forEach(r => {
-      if(r.rater_id == this.profile.user_id && r.user_id == user.user_id){
-        rating_id = r.rating_id;
-      }
-    });
-    let data = { rating_id: rating_id, rate: 'negative', date_rated: new Date()};
-    this.dataProvider.postData(data, "updateRating").then(res => {
-      let result;
-      result = res;
-      if(res && result.data){
-        this.raters = result.data;
-        this.rateState = !this.rateState;
-        
-      }else{
-        console.log(res);
-      }
-    }).catch(err => {
-      console.log(err);
-    });
-  }
+ 
+ 
 
   hasRated(user){
     if(this.raters){
       for(var i=0; i<this.raters.length; i++){
         if(this.profile.user_id ==  this.raters[i].rater_id && user.user_id == this.raters[i].user_id){
-          this.feedback = this.raters[i].rate;
-         return true;
+         return this.raters[i].rate;
         }
       }
-      return false;
     }
-    return false;
+    return 'not rated';
   }
   
 

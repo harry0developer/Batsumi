@@ -11,14 +11,39 @@ import { JobDetailsPage } from '../job-details/job-details';
 export class JobsPage {
   data: any;
   jobs: any;
+  myJobs: any = [];
+  profile: any;
   constructor(public navCtrl: NavController, public dataProvider: DataProvider, public navParams: NavParams) {
+    this.profile = JSON.parse(localStorage.getItem("user"));
   }
 
   ionViewDidLoad() { 
     this.getJobs();
+    this.loadMyJobs();
   }
   
-
+  loadMyJobs(){
+    let aJobs = [];
+    if(this.profile.type == "Employer"){
+      this.jobs.forEach(job => {
+        if(job.user_id_fk == this.profile.user_id){
+          this.myJobs.push(job);
+        }
+      });
+    }else{
+      this.dataProvider.loadAppliedJobs().then(res => {
+        res.map(res => {
+          this.jobs.map(job => {
+            if(job.job_id == res.job_id_fk){
+              this.myJobs.push(job);
+            }
+          })
+        })
+      }).catch(err => {
+        console.log(err);
+      })
+    }
+  }
 
   postJob(){
     this.dataProvider.presentLoading("Please wait...");

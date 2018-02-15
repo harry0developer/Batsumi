@@ -9,43 +9,36 @@
 
 <ion-content>
   <div class="top" *ngIf="user">
-      <img src="http://placehold.it/100x100" alt="">
-      <h2>{{user.firstname}} {{user.lastname}} </h2>
-      <p>{{user.title}}</p> 
-      <div class="rating" item-end> 
-        
-          <p *ngIf="user.rating == 1">&#9733;&#9734;&#9734;&#9734;&#9734;</p>
-          <p *ngIf="user.rating == 2">&#9733;&#9733;&#9734;&#9734;&#9734;</p>
-          <p *ngIf="user.rating == 3">&#9733;&#9733;&#9733;&#9734;&#9734;</p>
-          <p *ngIf="user.rating == 4">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-          <p *ngIf="user.rating == 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p> 
-      </div>
-      <div *ngIf="!rateState">
-        <ion-grid class="rate" *ngIf="page == 'AppointmentsPage'">
-          <ion-row padding>
-            <ion-col col-6>
-              <button ion-button color="dark" icon-start outline block (click)="rateUser(user, 'positive')">
-                <ion-icon name="thumbs-up"></ion-icon>
-                Rate up
-              </button>
-            </ion-col>
-            <ion-col col-6>
-              <button ion-button color="dark" icon-start outline block (click)="rateUser(user, 'negative')">
-                <ion-icon name="thumbs-down"></ion-icon>
-                Rate down
-              </button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </div>
-      <div class="feedback" *ngIf="rateState && feedback">
-        <p>You have rated this user {{feedback}}ly </p>
-        <button ion-button color="dark" icon-start outline block (click)="updateRating(user)">
-          <ion-icon name="thumbs-down"></ion-icon>
-          Rate down
-        </button>
-      </div>
-    
+    <img src="http://placehold.it/100x100" alt="">
+    <h2>{{user.firstname}} {{user.lastname}} </h2>
+    <p>{{user.title}}</p> 
+    <div class="rating" item-end> 
+      
+        <p *ngIf="user.rating == 1">&#9733;&#9734;&#9734;&#9734;&#9734;</p>
+        <p *ngIf="user.rating == 2">&#9733;&#9733;&#9734;&#9734;&#9734;</p>
+        <p *ngIf="user.rating == 3">&#9733;&#9733;&#9733;&#9734;&#9734;</p>
+        <p *ngIf="user.rating == 4">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
+        <p *ngIf="user.rating == 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p> 
+    </div>
+    <!-- <div>
+      <p *ngIf="rateState == 'not rated'"> {{rateState}}</p>
+      <ion-grid class="rate" *ngIf="page == 'AppointmentsPage'">
+        <ion-row padding>
+          <ion-col col-6>
+            <button ion-button [outline]="rateState == 'negative'" color="dark" icon-start block (click)="checkRates(user, 'positive')">
+              <ion-icon name="thumbs-up"></ion-icon>
+              Rate up
+            </button>
+          </ion-col>
+          <ion-col col-6> 
+            <button ion-button [outline]="rateState == 'positive'" color="dark" icon-start block (click)="checkRates(user, 'negative')">
+              <ion-icon name="thumbs-down"></ion-icon>
+              Rate down
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div> -->
   </div>
   <ion-list padding>
     <ion-item (click)="loadUserMoreDetails('Personal info')">
@@ -80,6 +73,8 @@
 
   <div padding *ngIf="user">
     <button ion-button block color="dark" *ngIf="page == 'HomePage'" (click)="offerUserEmployment(user)">Offer Employement</button>
+
+    <!-- <button ion-button block color="dark" *ngIf="page == 'HomePage'" (click)="offerUserEmployment(user)">Offer Employement</button> -->
   </div>
 
 </ion-content>

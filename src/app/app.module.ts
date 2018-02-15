@@ -17,12 +17,13 @@ import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { OtpPage } from '../pages/otp/otp';
 import { TermsPage } from '../pages/terms/terms';
-import { JobsPage } from '../pages/jobs/jobs';
+// import { JobsPage } from '../pages/jobs/jobs';
 import { PostJobsPage } from '../pages/post-jobs/post-jobs';
 import { AutocompletePage } from '../pages/autocomplete/autocomplete';
 import { JobDetailsPage } from '../pages/job-details/job-details';
 import { SettingsPage } from '../pages/settings/settings';
 import { StatsPage } from '../pages/stats/stats';
+import { MyJobsPage } from '../pages/my-jobs/my-jobs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -47,12 +48,13 @@ import { Geolocation } from '@ionic-native/geolocation';
     SignupPage,
     OtpPage,
     TermsPage,
-    JobsPage,
+    // JobsPage,
     PostJobsPage,
     AutocompletePage,
     JobDetailsPage,
     SettingsPage,
-    StatsPage
+    StatsPage,
+    MyJobsPage
   ],
   imports: [
     BrowserModule, 
@@ -75,12 +77,13 @@ import { Geolocation } from '@ionic-native/geolocation';
     SignupPage,
     OtpPage,
     TermsPage,
-    JobsPage,
+    // JobsPage,
     PostJobsPage,
     AutocompletePage,
     JobDetailsPage,
     SettingsPage,
-    StatsPage
+    StatsPage,
+    MyJobsPage
   ],
   providers: [
     StatusBar,

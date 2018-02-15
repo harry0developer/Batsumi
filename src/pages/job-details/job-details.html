@@ -58,9 +58,12 @@
 
     </ion-card-content>
     
-      <div padding>
-        <button ion-button block (click)="applyNow(job)">Apply now</button>
-      </div>
+    <div padding [hidden]="applied">
+      <button ion-button  block (click)="applyNow(job)">Apply now</button>
+    </div>
+    <div padding [hidden]="!applied">
+      <button ion-button  block (click)="withdrawApplication(job)">Withdraw Application</button>
+    </div>
   </ion-list>
    
 </ion-content>

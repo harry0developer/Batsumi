@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ModalController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, ModalController, NavParams, Events } from 'ionic-angular';
 
 import { SignupPage } from '../signup/signup';
 // import { JobsPage } from '../jobs/jobs';
@@ -15,7 +15,8 @@ import { DataProvider } from '../../providers/data/data';
 export class LoginPage {
   data: any = {email: "", password:""}; 
   profile: any;
-  constructor(public navCtrl: NavController, public dataProvider:DataProvider, public modalCtrl: ModalController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public dataProvider:DataProvider, public modalCtrl: ModalController, 
+    public ionEvents: Events, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -23,6 +24,7 @@ export class LoginPage {
     this.profile = JSON.parse(localStorage.getItem('user'));
     if(this.profile != null){
       this.dataProvider.dismissLoading();
+      this.ionEvents.publish("user:loggedIn", this.profile);
       localStorage.setItem('user', JSON.stringify(this.profile));
       this.navCtrl.setRoot(HomePage);
     }else{
@@ -46,6 +48,7 @@ export class LoginPage {
         this.dataProvider.dismissLoading();
         console.log(res.data);
         localStorage.setItem('user', JSON.stringify(res.data));
+        this.ionEvents.publish("user:loggedIn", res.data);
         this.navCtrl.setRoot(HomePage, {user: res.data});
       }
     }).catch(err => {

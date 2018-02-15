@@ -12,13 +12,11 @@ export class AppointmentsPage {
 
   appointmentSegment: string = 'offered';
  
-  offered: any = [];
-  accepted: any = [];
-  rejected: any = [];
+ 
   
   profile: any;
   users: any;
-  appointments: any;
+  appointments: any = [];
   myAppointments: any = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider,
     public ionEvents: Events) {  
@@ -55,29 +53,22 @@ export class AppointmentsPage {
     app.map(aUser => {
       users.map(user => {
         if(aUser.appointer_id == user.user_id && aUser.appointed_id == this.profile.user_id){
-          if(aUser.status == 'offered'){
-            this.offered.push(user);
-          }
-          else if(aUser.status == 'accepted'){
-            this.accepted.push(user);
-          }
-          else if(aUser.status == 'rejected'){
-            this.rejected.push(user);
-          }
+          let usa = Object.assign({}, user, aUser);
+          this.appointments.push(usa);
+          console.log(usa);
         }
         else if(aUser.appointed_id == user.user_id && aUser.appointer_id == this.profile.user_id){
-          if(aUser.status == 'offered'){
-            this.offered.push(user);
-          }
-          else if(aUser.status == 'accepted'){
-            this.accepted.push(user);
-          }
-          else if(aUser.status == 'rejected'){
-            this.rejected.push(user);
-          }
+          let usa = Object.assign({}, user, aUser);
+          this.appointments.push(usa);
+          console.log(usa)
         }
       })
     })
+  }
+
+  getDateFormat(d){
+    let _date = new Date(d.split('T')[0]);
+    return _date.toLocaleString('en' , {day: "numeric", month: "short", year:"numeric"} );
   }
 
   viewUserProfile(user){

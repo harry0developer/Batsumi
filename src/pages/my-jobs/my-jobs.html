@@ -1,0 +1,25 @@
+ 
+<ion-header>
+  <ion-navbar color="dark">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>My Jobs</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding> 
+
+  <ion-list>
+    <ion-item *ngFor="let job of myJobs" tappable (click)="jobDetails(job)">
+      <ion-thumbnail item-start>
+        <img src="http://placehold.it/200x200">
+      </ion-thumbnail>
+      <h2 *ngIf="job">{{job.title}}</h2>
+      <p *ngIf="job">{{job.category}}</p>
+      <p *ngIf="job">{{job.type }} | R{{job.salary}}</p>
+      <button ion-button clear item-end>View</button>
+    </ion-item>
+  </ion-list> 
+</ion-content>
