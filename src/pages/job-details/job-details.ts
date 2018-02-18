@@ -31,8 +31,6 @@ export class JobDetailsPage {
     this.post_time = moment(this.job.date_created, "YYYYMMDD").fromNow();  
   }
 
-   
-
 
   applyNow(job, emp){
     let data = {
@@ -48,6 +46,7 @@ export class JobDetailsPage {
         this.dataProvider.appliedJobs = null;
         this.ionEvent.publish("user:applied", results.data);
         this.hasApplied();
+        console.log(res);
       }else{
         console.log(res);
       }
@@ -56,12 +55,21 @@ export class JobDetailsPage {
     })
   }
 
-  withdrawApplication(job){
-    let data = {
+
+  deleteApplication(job){
+    let data = { 
       user_id_fk: this.profile.user_id,
-      job_id_fk: job.job_id, 
-      employer_id_fk: job.user_id_fk
-      // date_applied: new Date()
+      employer_id_fk: job.user_id_fk,
+      job_id_fk: job.job_id
+    }
+    console.log(data);
+  }
+
+  withdrawApplication(job){
+    let data = { 
+      user_id_fk: this.profile.user_id,
+      employer_id_fk: job.user_id_fk,
+      job_id_fk: job.job_id
     }
     this.dataProvider.postData(data, 'removeJobFromApplicants').then(res => {
       let results;
@@ -69,9 +77,11 @@ export class JobDetailsPage {
       if(results && results.data){
         this.dataProvider.appliedJobs = null;
         this.ionEvent.publish("user:applied", results.data);
-        this.applied = false;
-      }else{
         console.log(res);
+        this.applied = !this.applied;
+      } 
+      else{ 
+          console.log(res);
       }
     }).catch(err => {
       console.log(err);
@@ -83,14 +93,14 @@ export class JobDetailsPage {
   }
 
  
-  hasApplied(){
+  hasApplied(){ 
     this.dataProvider.loadAppliedJobs().then(res => {
       console.log(this.job);
       this.jobsApplied = res;
       res.forEach(aJob => {
         if(aJob.job_id_fk == this.job.job_id && this.profile.user_id == aJob.user_id_fk){
-        this.applied = true;
-        console.log("You applied for "+ this.job.title);
+          this.applied = true;
+          console.log("You applied for "+ this.job.title);
         }
       });
     });

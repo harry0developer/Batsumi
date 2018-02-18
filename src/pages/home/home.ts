@@ -216,7 +216,7 @@ export class HomePage {
   }
 
   jobDetails(job){
-    this.navCtrl.push(JobDetailsPage, {job:job, user: this.profile});
+      this.navCtrl.push(JobDetailsPage, {job:job, user: this.profile});
   }
 
 

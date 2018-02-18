@@ -3,7 +3,8 @@
     <div *ngIf="profile">
       <img src="http://placehold.it/100x100" alt="" class="profile">
       <h2>{{profile.firstname}} {{profile.lastname}}</h2>
-      <p>{{profile.title}}</p> 
+      <p>{{profile.title}}
+      <br>{{profile.type}}</p> 
     </div>
     <ion-list>
       <ion-item menuClose ion-item icon-left (click)="nav.setRoot(pages2.homePage)">
