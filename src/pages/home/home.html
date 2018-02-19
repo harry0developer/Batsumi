@@ -57,9 +57,9 @@
         </ion-list> 
         <ion-list-header color="light">
           <div class="left" item-start>
-            <button ion-button clear icon-left (click)="like(job)">
+            <!-- <button ion-button clear icon-left (click)="like(job)">
               <i class="fa fa-heart" item-start></i>Like
-            </button>
+            </button> -->
             
             <button ion-button clear icon-left (click)="share(job)">
               <i class="fa fa-share" item-start></i>Share
@@ -75,25 +75,25 @@
   
     <ion-list padding *ngIf="profile && profile.type === 'Employer'">
       <ion-item class="user" *ngFor="let user of users" (click)="userDetails(user)">
-        <ion-avatar item-start>
-          <img src="http://placehold.it/100x100">
-        </ion-avatar>
-        <h2>{{user.firstname}} {{user.lastname}}</h2>
-        <p>
-          <i class="fa fa-briefcase" item-start></i>
-          {{user.title}}
-        </p>
-        <p>
-          <i class="fa fa-venus-mars" item-start></i>
-          {{user.gender}}
-        </p> 
-        <div class="rating" item-end>
-          <p *ngIf="user.rating == 1">&#9733;&#9734;&#9734;&#9734;&#9734;</p>
-          <p *ngIf="user.rating == 2">&#9733;&#9733;&#9734;&#9734;&#9734;</p>
-          <p *ngIf="user.rating == 3">&#9733;&#9733;&#9733;&#9734;&#9734;</p>
-          <p *ngIf="user.rating == 4">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
-          <p *ngIf="user.rating == 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p> 
-        </div>
+          <ion-avatar item-start>
+            <img src="http://placehold.it/100x100">
+          </ion-avatar>
+          <h2>{{user.firstname}} {{user.lastname}}</h2>
+          <p>
+            <i class="fa fa-briefcase" item-start></i>
+            {{user.title}}
+          </p>
+          <p>
+            <i class="fa fa-venus-mars" item-start></i>
+            {{user.gender}}
+          </p> 
+          <div class="rating" item-end>
+            <p *ngIf="user.rating == 1">&#9733;&#9734;&#9734;&#9734;&#9734;</p>
+            <p *ngIf="user.rating == 2">&#9733;&#9733;&#9734;&#9734;&#9734;</p>
+            <p *ngIf="user.rating == 3">&#9733;&#9733;&#9733;&#9734;&#9734;</p>
+            <p *ngIf="user.rating == 4">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
+            <p *ngIf="user.rating == 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p> 
+          </div>
       </ion-item>
     </ion-list>
   

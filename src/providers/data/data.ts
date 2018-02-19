@@ -110,6 +110,7 @@ export class DataProvider {
     });
   }
 
+ 
   loadAppointments() {
     if (this.appointments) {
       return Promise.resolve(this.appointments);

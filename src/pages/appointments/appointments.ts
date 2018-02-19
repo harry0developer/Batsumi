@@ -24,14 +24,15 @@ export class AppointmentsPage {
     }
     
   ionViewDidLoad() {
+
     this.dataProvider.loadAppointments().then(res => {
       res.map(aUser =>  {
         if(this.profile.type == 'Employer'){
-          if( aUser.appointer_id == this.profile.user_id){
+          if( aUser.employer_id_fk == this.profile.user_id){
             this.myAppointments.push(aUser);
           }
         }else if(this.profile.type == 'Employee'){
-          if( aUser.appointed_id == this.profile.user_id){
+          if( aUser.user_id_fk == this.profile.user_id){
             this.myAppointments.push(aUser);
           }
         }
@@ -47,17 +48,19 @@ export class AppointmentsPage {
     .catch(err => {
       console.log(err);
     });
+
+
   }
 
   mapUserWithAppointments(users, app){
     app.map(aUser => {
       users.map(user => {
-        if(aUser.appointer_id == user.user_id && aUser.appointed_id == this.profile.user_id){
+        if(aUser.employer_id_fk == user.user_id && aUser.user_id_fk == this.profile.user_id){
           let usa = Object.assign({}, user, aUser);
           this.appointments.push(usa);
           console.log(usa);
         }
-        else if(aUser.appointed_id == user.user_id && aUser.appointer_id == this.profile.user_id){
+        else if(aUser.user_id_fk == user.user_id && aUser.employer_id_fk == this.profile.user_id){
           let usa = Object.assign({}, user, aUser);
           this.appointments.push(usa);
           console.log(usa)

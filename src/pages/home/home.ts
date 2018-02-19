@@ -72,7 +72,13 @@ export class HomePage {
 
   init(){
     this.dataProvider.loadUsers().then(users => {
-      this.users = users;
+      let usa = [];
+      users.forEach(user => {
+        if(user && user.type != 'Employer'){
+          usa.push(user);
+        }
+      });
+      this.users = usa;
     }).catch(e => {
       console.log(e);
     });
@@ -119,7 +125,18 @@ export class HomePage {
   }
 
   setFilteredUsers(){
-    this.users = this.dataProvider.filterUsers(this.searchTerm);
+    let users = this.dataProvider.filterUsers(this.searchTerm);
+    if(users){
+
+      let usa = [];
+      
+      users.forEach(user => {
+        if(user && user.type != 'Employer'){
+          usa.push(user);
+        }
+      });
+      this.users = usa;
+    }
   }
 
   setFilteredJobs() {

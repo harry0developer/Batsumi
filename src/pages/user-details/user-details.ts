@@ -26,6 +26,8 @@ export class UserDetailsPage {
 
   raters: any = [];
   rateState: string;
+
+  applied: boolean;
   
   constructor(public navCtrl: NavController, public dataProvider: DataProvider, public ionEvents: Events,
     public modalCtrl: ModalController, public navParams: NavParams) {
@@ -52,6 +54,9 @@ export class UserDetailsPage {
       this.raters = res;
       this.rateState = this.hasRated(this.user);
     });
+
+
+    this.hasBeenHired();
  
   }
 
@@ -113,9 +118,9 @@ export class UserDetailsPage {
   offerUserEmployment(user){
     this.dataProvider.presentLoading("Please wait...");
     let data = { 
-      appointer_id: this.profile.user_id, 
-      appointed_id: user.user_id,
-      status: "Job Offered", //"Job Rejected" , "Job Accepted"
+      employer_id_fk: this.profile.user_id, 
+      user_id_fk: user.user_id,
+      status: "Job offered", //"Job Rejected" , "Job Accepted"
       last_update: new Date()
     }
     this.dataProvider.postData(data, 'addToAppointments').then(res => {
@@ -123,7 +128,10 @@ export class UserDetailsPage {
       result = res;
       if(result && result.data){
         this.dataProvider.dismissLoading();
+        this.dataProvider.appointments = null;
         this.ionEvents.publish("appointments:updated", result.data);
+        this.hasBeenHired();
+        console.log(res);
       }else{
         this.dataProvider.dismissLoading();
         this.dataProvider.presentAlert("Job offer Failed", result.error);
@@ -133,5 +141,43 @@ export class UserDetailsPage {
     })
 
   }
+
+  removeUserEmployment(user){
+    let data = { 
+      employer_id_fk: this.profile.user_id, 
+      user_id_fk: user.user_id,
+      status: "Job offered", //"Job Rejected" , "Job Accepted"
+      last_update: new Date()
+    }
+    this.dataProvider.postData(data, 'removeUserFromAppointments').then(res => {
+      let results;
+      results = res;
+      if(results && results.data){
+        this.dataProvider.appointments = null;
+        this.ionEvents.publish("appointments:updated", results.data);
+        console.log(res);
+        this.applied = !this.applied;
+      } 
+      else{ 
+          console.log(res);
+      }
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
+  hasBeenHired(){ 
+    this.dataProvider.loadAppointments().then(res => {
+      // this.jobsApplied = res;
+      res.forEach(aUser => {
+        if(aUser.employer_id_fk == this.profile.user_id && this.user.user_id == aUser.user_id_fk){
+          this.applied = true;
+          console.log("You have appointed this user: "+ this.user.firstame);
+        }
+      });
+    });
+  }
+
+  
 
 }

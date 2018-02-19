@@ -14,7 +14,7 @@
   <ion-list *ngIf="profile && profile.type == 'Employee'">
     <div *ngIf="myJobs.length < 1">
       <ion-item-divider >
-        <h2> My Posted Jobs</h2>
+        <h2> Applied Jobs</h2>
       </ion-item-divider>
       <ion-item text-wrap>
         <!-- <img src="http://placehold.it/200x200">  -->
@@ -37,7 +37,7 @@
 
   
   <ion-list *ngIf="profile && profile.type == 'Employer'">
-    <div *ngIf="postedJobs.length < 1">
+    <div *ngIf="postedJobs && postedJobs.length < 1">
       <ion-item-divider >
         <h2> My Posted Jobs</h2>
       </ion-item-divider>
@@ -47,7 +47,7 @@
         <p>All your posted jobs will appear and managed here.</p>
       </ion-item>
     </div> 
-    <div *ngIf="postedJobs.length > 0">
+    <div *ngIf="postedJobs && postedJobs.length > 0">
       <ion-item-divider> My Posted Jobs</ion-item-divider>
       <ion-item *ngFor="let job of postedJobs" tappable (click)="jobDetails(job)">
         <ion-thumbnail item-start>

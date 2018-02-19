@@ -64,6 +64,7 @@ export class JobDetailsPage {
     }
     console.log(data);
   }
+  
 
   withdrawApplication(job){
     let data = { 

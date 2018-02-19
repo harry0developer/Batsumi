@@ -71,11 +71,14 @@
 
   </ion-list>
 
-  <div padding *ngIf="user">
-    <button ion-button block color="dark" *ngIf="page == 'HomePage'" (click)="offerUserEmployment(user)">Offer Employement</button>
-
-    <!-- <button ion-button block color="dark" *ngIf="page == 'HomePage'" (click)="offerUserEmployment(user)">Offer Employement</button> -->
+     
+  <div padding [hidden]="applied">
+    <button ion-button color="dark" block (click)="offerUserEmployment(user)">Offer Employement</button>
   </div>
 
+  <div padding [hidden]="!applied">
+    <button ion-button color="dark" block (click)="removeUserEmployment(user)">Withdraw Application</button>
+  </div>
+ 
 </ion-content>
     
