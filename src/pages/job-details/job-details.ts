@@ -16,7 +16,11 @@ export class JobDetailsPage {
   profile: any;
   jobs: any;
   jobsApplied: any;
-  applied: boolean
+  applied: boolean;
+  hasViewed: boolean = false;
+  didView: boolean;
+  viewedJobs: any;
+  count: number;
   constructor(public navCtrl: NavController, public ionEvent: Events, public dataProvider: DataProvider, public navParams: NavParams) { 
     this.profile = JSON.parse(localStorage.getItem("user"));
     this.applied = false;
@@ -29,6 +33,10 @@ export class JobDetailsPage {
     this.user = this.navParams.get('user');
     this.hasApplied();
     this.post_time = moment(this.job.date_created, "YYYYMMDD").fromNow();  
+    this.didView = false;
+    this.count = 0;
+    this.hasViewedJob();
+    this.countJobViews();
   }
 
 
@@ -96,7 +104,6 @@ export class JobDetailsPage {
  
   hasApplied(){ 
     this.dataProvider.loadAppliedJobs().then(res => {
-      console.log(this.job);
       this.jobsApplied = res;
       res.forEach(aJob => {
         if(aJob.job_id_fk == this.job.job_id && this.profile.user_id == aJob.user_id_fk){
@@ -106,5 +113,57 @@ export class JobDetailsPage {
       });
     });
   }
+
+  
+ //        
+
+
  
+ hasViewedJob(){
+  this.dataProvider.loadViewedJobs().then(res => {
+    this.viewedJobs = res;
+    if(res && res.length > 0){
+      for(let i=0; i<res.length; i++){
+        if(res[i].job_id_fk == this.job.job_id && this.profile.user_id == res[i].user_id_fk){
+          console.log("Viewed job");
+          this.didView = true;
+        }
+      }
+      if(!this.didView){
+        this.addToViewedHelper();
+      }
+    }
+    else{
+      this.addToViewedHelper();
+    }
+  })
+ }
+
+
+  addToViewedHelper(){
+    let data = {
+      user_id_fk: this.profile.user_id,
+      job_id_fk: this.job.job_id,
+      date_viewed: this.dataProvider.getDate()
+    }
+    this.dataProvider.postData(data, "addToJobViews").then(res => {
+      this.viewedJobs = res;
+      this.countJobViews(res);
+      console.log(res);
+    })
+  }
+
+  countJobViews(vJobs){
+    if(vJobs){
+      vJobs.data.forEach(vJob => {
+        if(vJob.job_id_fk == this.job.job_id){
+          this.count++;
+        }
+      });
+      console.log(this.count)
+    }else{
+      console.log("No one viewed thia")
+    }
+  }
+
 }

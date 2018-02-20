@@ -1,6 +1,6 @@
 import { Headers, Http  } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { /*ModalController,*/ LoadingController, ToastController ,AlertController, ActionSheetController, Events} from 'ionic-angular';
+import { LoadingController, ToastController ,AlertController, ActionSheetController, Events} from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
 import 'rxjs/add/operator/map';
@@ -29,6 +29,7 @@ export class DataProvider {
   appointments: any = [];
   raters: any;
   ratings: any;
+  viewedJobs: any;
   constructor(public http: Http, public loadingCtrl: LoadingController, public events: Events,
     public alertCtrl: AlertController, public toastCtrl: ToastController, 
     private actionSheetCtrl: ActionSheetController, private geolocation: Geolocation ) {
@@ -140,6 +141,23 @@ export class DataProvider {
         });
     });
   }
+
+  loadViewedJobs() {
+    // if (this.viewedJobs) {
+    //   return Promise.resolve(this.viewedJobs);
+    // }
+    return new Promise(resolve => {
+      let headers = new Headers();
+      this.http.post(apiUrl + 'getViewedJobs', null ,{headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          this.viewedJobs = data.data;
+          resolve(this.viewedJobs);
+        });
+    });
+  }
+
+
 
   loadAppliedJobs() {
     if (this.appliedJobs) {
@@ -419,4 +437,12 @@ export class DataProvider {
  
     actionSheet.present();
   }
+
+  getDate(){
+    let d = new Date();
+    let _date = d.getDay() + "-" + d.getDate() + "-" + d.getFullYear();
+    return _date;
+  }
+
+  
 }

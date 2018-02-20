@@ -184,6 +184,7 @@ export class HomePage {
     return sk;
     
   }
+  
   getUserEducation(user){
     let ed = [];
     this.education.forEach(edu => {
@@ -193,7 +194,6 @@ export class HomePage {
     });
     return ed;
   }
-
 
 
   getMoment(job){
@@ -265,11 +265,7 @@ export class HomePage {
     this.dataProvider.shareActionSheet(job);
   }
 
-  like(job){
-    // console.log(job)
-  }
+ 
 
-  //Jobs =========
-  
 
 }
