@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
 import { PersonalDetailsPage} from '../personal-details/personal-details';
 import { DataProvider } from '../../providers/data/data';
+import { UserTypePage } from '../user-type/user-type';
+
 @IonicPage()
 @Component({
   selector: 'page-otp',
@@ -21,11 +23,7 @@ export class OtpPage {
 
   confirmOTP(){    
     if(this.data.otp == this.otp){
-      let signupModal = this.modalCtrl.create(PersonalDetailsPage, {data: this.data});
-      signupModal.onDidDismiss(data => {
-        console.log(data);
-      });
-      signupModal.present();
+      this.navCtrl.push(UserTypePage , {data: this.data});
     }else{
       console.log(this.otp + " " + this.data.otp);
       this.dataProvider.presentAlert("Otp code incorrect", "The code you have entered does not match the one sent to your email address");

@@ -17,9 +17,11 @@
   <ion-list >
     <ion-list-header class="personal-details" color="light">
       <h2>Personal Details</h2>
-      <p>Let recruiters and employers know who you are</p>
+      <p *ngIf="data.type == 'Employer'">Let job hunters and candidates know whom you are</p>
+      <p *ngIf="data.type == 'Employee'">Let recruiters and employers know whom you are</p>
       <i class="fa fa-2x fa-address-card-o" item-end></i>
     </ion-list-header>
+ 
     <ion-grid class="personal-details">
       <ion-row>
         <ion-col col-6>
@@ -39,7 +41,7 @@
       <ion-row>
         <ion-col col-6>
             <ion-item>
-              <ion-label floating><i class="fa fa-intersex" item-start></i>Gender</ion-label>
+              <ion-label floating><i class="fa fa-transgender" item-start></i>Gender</ion-label>
               <ion-select [(ngModel)]="data.gender" multiple="false">
                 <ion-option>Male</ion-option>
                 <ion-option>Female</ion-option>
@@ -70,7 +72,7 @@
         </ion-col>
         <ion-col col-6>
           <ion-item>
-            <ion-label floating><i class="fa fa-calendar-plus-o" item-start></i>Date of birth</ion-label>
+            <ion-label floating><i class="fa fa-calendar" item-start></i>Date of birth</ion-label>
             <ion-datetime displayFormat="DD-MMM-YYYY" max="2001" [(ngModel)]="data.dob"></ion-datetime>
           </ion-item>
         </ion-col>
@@ -79,7 +81,7 @@
       <ion-row>
         <ion-col col-6>
           <ion-item>
-            <ion-label floating><i class="fa fa-expeditedssl" item-start></i>ID/Passport no</ion-label>
+            <ion-label floating><i class="fa fa-address-card" item-start></i>ID/Passport no</ion-label>
             <ion-input [(ngModel)]="data.id_number" type="text"></ion-input>
           </ion-item>
         </ion-col>
@@ -92,14 +94,14 @@
       </ion-row>
       <ion-col col-12>
         <ion-item>
-          <ion-label floating><i class="fa fa-map-marker" item-start></i>Home address</ion-label>
+          <ion-label floating><i class="fa fa-map-pin" item-start></i>Home address</ion-label>
           <ion-input [(ngModel)]="data.address" type="text"></ion-input>
         </ion-item>
       </ion-col>
     </ion-grid>
   </ion-list>
 
-  <ion-list class="extra">
+  <!-- <ion-list class="extra">
     <ion-list-header color="light">
       <h2>User Type</h2>
       <p>What are you here for, seeking jobs or offering jobs?</p>
@@ -124,16 +126,16 @@
         </ion-item>
       </ion-col>
     </ion-row>
-  </ion-list>
+  </ion-list> -->
 
   <ion-list class="extra">
-    <ion-list-header color="light">
+    <ion-list-header *ngIf="data.type == 'Employee'" color="light">
       <h2>Extra Details</h2>
       <p>Let recruiter and employers know your situation</p>
       <i class="fa fa-2x fa-wheelchair" item-end></i>
     </ion-list-header>
     
-    <ion-item>
+    <ion-item *ngIf="data.type == 'Employee'">
       <ion-label> <i class="fa fa-wheelchair" item-start></i> Disabled</ion-label>
       <ion-toggle color="dark" [(ngModel)]="data.disability"></ion-toggle>
     </ion-item>
@@ -141,7 +143,7 @@
       <ion-input placeholder="State your disability" [(ngModel)]="data.disability_type" type="text"></ion-input>
     </ion-item>
 
-    <ion-item>
+    <ion-item *ngIf="data.type == 'Employee'">
       <ion-label ><i class="fa fa-bars" item-start></i> Criminal Record</ion-label>
       <ion-toggle color="dark" [(ngModel)]="data.criminal"></ion-toggle>
     </ion-item>
@@ -157,6 +159,6 @@
     </ion-item>
   </ion-list>
 
-    <button [disabled]="!data.tc" ion-button block round color="dark" (click)="signup()"> Create Profile</button>
+    <button [disabled]="!data.tc" ion-button block color="dark" (click)="signup()"> Create Profile</button>
  
 </ion-content>

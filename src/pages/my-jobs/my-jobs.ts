@@ -72,6 +72,7 @@ export class MyJobsPage {
     })
   }
 
+ 
 
   getAllJobs(){
     this.dataProvider.loadJobs().then(all => {
@@ -79,8 +80,6 @@ export class MyJobsPage {
       
       this.dataProvider.loadAppliedJobs().then(app => {
         this.appliedJobs = app;
-        console.log(app);
-        console.log(all);
         this.myJobs = this.mapJobs(all,app);
       })
     })
@@ -101,6 +100,6 @@ export class MyJobsPage {
       this.navCtrl.push(StatsPage, {job:job});
     }
   }
-
-
+ 
+  
 }

@@ -24,12 +24,14 @@ import { JobDetailsPage } from '../pages/job-details/job-details';
 import { SettingsPage } from '../pages/settings/settings';
 import { StatsPage } from '../pages/stats/stats';
 import { MyJobsPage } from '../pages/my-jobs/my-jobs';
+import { UserTypePage } from '../pages/user-type/user-type';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DataProvider } from '../providers/data/data';
 import { HttpModule } from '@angular/http';
 import { Geolocation } from '@ionic-native/geolocation';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 
 @NgModule({
@@ -54,7 +56,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     JobDetailsPage,
     SettingsPage,
     StatsPage,
-    MyJobsPage
+    MyJobsPage,
+    UserTypePage
   ],
   imports: [
     BrowserModule, 
@@ -83,15 +86,16 @@ import { Geolocation } from '@ionic-native/geolocation';
     JobDetailsPage,
     SettingsPage,
     StatsPage,
-    MyJobsPage
+    MyJobsPage,
+    UserTypePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     DataProvider,
-    Geolocation
-
+    Geolocation,
+    SocialSharing
   ]
 })
 export class AppModule {}

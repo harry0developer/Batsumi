@@ -3,6 +3,7 @@ import { IonicPage, NavController,ModalController,ViewController, NavParams, Act
 
 import { DataProvider } from '../../providers/data/data';
 import { TermsPage } from '../terms/terms';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -10,7 +11,7 @@ import { TermsPage } from '../terms/terms';
   templateUrl: 'personal-details.html',
 })
 export class PersonalDetailsPage {
-  data: any = {};
+  data: any = {firstname:"", lastname:"", dob:"", gender:"", nationality:"", race:"", phone:"", address:"", type: ""};
   nationalities: any;
   countries: any;
   user: any;
@@ -20,10 +21,12 @@ export class PersonalDetailsPage {
   }
 
   ionViewDidLoad() {
-    this.dataProvider.presentAlert("Welcome to AppName", "Complete your profile details and then your are set.");
+    this.dataProvider.presentAlert("Welcome", "Complete your profile details and then you are set.");
+    this.data = this.navParams.get("data");
     
-    this.data = this.navParams.get('data');
-    console.log(this.user);
+    console.log(this.data)
+    // this.data = this.navParams.get('data');
+    // console.log(this.user);
     this.getCountries();
     this.getTitles()
   }
@@ -59,7 +62,8 @@ export class PersonalDetailsPage {
         this.dataProvider.dismissLoading();
         this.dataProvider.presentAlert("Signup Failed", res.error.text);
       }else{ 
-        console.log(res);
+        localStorage.setItem('user', JSON.stringify(res.data) )
+        this.navCtrl.setRoot(HomePage);
         this.dataProvider.dismissLoading();
       }
     }).catch(err => {

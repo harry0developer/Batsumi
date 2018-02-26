@@ -59,7 +59,7 @@
           </ion-row>
         </ion-grid> 
          
-        <ion-grid>
+        <ion-grid *ngIf="user.type == 'Employee'"> 
           <ion-row>
             <ion-col>
                 <ion-item text-wrap>
@@ -77,39 +77,42 @@
             </ion-col>
           </ion-row>
         </ion-grid>
+
         <ion-item text-wrap>
           <i class="fa fa-map-marker-alt" item-start></i>
           <p>{{user.address}}</p>
         </ion-item> 
       </div>
-      <div class="social" >
-        <ion-item-divider color="light"> Social Media </ion-item-divider>
+
+      <div class="social">
+        <ion-item-divider color="light" *ngIf="user.facebook || user.twitter || user.linkedIn || user.whatsapp"> Social Media </ion-item-divider>
         <ion-grid>
-          <ion-row>
-            <ion-col>
+          <ion-row> 
+            <ion-col *ngIf="user.whatsapp">
               <ion-item text-wrap>
                 <ion-icon name="logo-linkedin" item-start></ion-icon>
-                Maphuti Setati
+                {{user.linkedIn}}
               </ion-item>
             </ion-col>
-            <ion-col>
+            <ion-col *ngIf="user.facebook">
               <ion-item text-wrap>
                 <ion-icon name="logo-facebook" item-start></ion-icon>
-                Maphuti Setati
+                {{user.facebook}}
               </ion-item>
             </ion-col>
-            <ion-col>
+            <ion-col *ngIf="user.twitter">
               <ion-item text-wrap>
                 <ion-icon name="logo-twitter" item-start></ion-icon>
-                @Maphuti_Setati
+               {{user.twitter}}
               </ion-item>
             </ion-col>
-            <ion-col>
+            <ion-col *ngIf="user.whatsapp">
               <ion-item text-wrap>
-                <ion-icon name="logo-googleplus" item-start></ion-icon>
-                Maphuti Setati
+                <ion-icon name="logo-whatsapp" item-start></ion-icon>
+                {{user.whatsapp}}
               </ion-item>
             </ion-col>
+           
           </ion-row>
         </ion-grid>
       </div>

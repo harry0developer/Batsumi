@@ -10,6 +10,8 @@ import { SettingsPage } from '../pages/settings/settings';
 import { TermsPage } from '../pages/terms/terms';
 import { LoginPage } from '../pages/login/login';
 import { MyJobsPage } from '../pages/my-jobs/my-jobs';
+// import { UserTypePage } from '../pages/user-type/user-type';
+// import { PersonalDetailsPage } from '../pages/personal-details/personal-details';
 
 @Component({
   templateUrl: 'app.html'

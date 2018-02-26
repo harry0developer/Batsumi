@@ -189,6 +189,21 @@ export class DataProvider {
     });
   }
 
+  loadSharedJobs() {
+    if (this.raters) {
+      return Promise.resolve(this.raters);
+    }
+    return new Promise(resolve => {
+      let headers = new Headers();
+      this.http.post(apiUrl + 'getSharedJobs', null ,{headers: headers})
+        .map(res => res.json())
+        .subscribe(data => {
+          this.raters = data.data;
+          resolve(this.raters);
+        });
+    });
+  }
+
   getCountries() {
     if (this.nationalities) {
       return Promise.resolve(this.nationalities);
