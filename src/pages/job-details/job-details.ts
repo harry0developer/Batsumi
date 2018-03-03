@@ -89,8 +89,7 @@ export class JobDetailsPage {
       if(results && results.data){
         this.dataProvider.appliedJobs = null;
         this.ionEvent.publish("user:applied", results.data);
-        console.log(res);
-        this.countAppliedUsers(res);
+        this.countAppliedUsers(results.data);
         this.applied = !this.applied;
       } 
       else{ 
