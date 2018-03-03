@@ -52,3 +52,49 @@
     position: absolute;
     bottom: 10px;
 }
+
+@font-face{
+    font-family: SansCaption;
+    src: url('../assets/fonts/SansCaption.woff2') format('woff2');
+}
+
+*{
+    font-family: SansCaption;
+}
+ 
+ion-content.content{
+    background-color: #009688;
+}
+ 
+h2{
+    font-size: 1.2em !important;
+}
+
+.toolbar-background{
+    background-color: #009688 !important;
+}
+
+
+//  .alert-wrapper{
+//     background-color: #E8B911 !important;
+// }
+
+ 
+// ion-item.item.item-input, ion-item.item.item-select, ion-item.item.item-datetime{
+//     background-color:transparent;
+ 
+// }
+
+// ion-label.label{
+//     color: #fff !important;
+// }
+
+// .btn button{
+//     color: #fff !important;
+// }
+ 
+// .original .toolbar-background {
+//     background-color: #E8B911 !important;
+//     color: #fff !important
+// }
+ 

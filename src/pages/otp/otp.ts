@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, AlertController } from 'ionic-angular';
-import { PersonalDetailsPage} from '../personal-details/personal-details';
+import { SetupPage} from '../setup/setup';
 import { DataProvider } from '../../providers/data/data';
 import { UserTypePage } from '../user-type/user-type';
 
@@ -21,15 +21,17 @@ export class OtpPage {
     console.log(this.data);
   }
 
+ 
   confirmOTP(){    
     if(this.data.otp == this.otp){
-      this.navCtrl.push(UserTypePage , {data: this.data});
+      // this.navCtrl.setRoot(UserTypePage , {data: this.data});
+      this.navCtrl.setRoot(SetupPage , {data: this.data});
     }else{
       console.log(this.otp + " " + this.data.otp);
       this.dataProvider.presentAlert("Otp code incorrect", "The code you have entered does not match the one sent to your email address");
     }
   }
-
+  
 
   resendOTP() {
     let alert = this.alertCtrl.create({

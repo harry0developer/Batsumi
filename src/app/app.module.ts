@@ -6,8 +6,8 @@ import { MyApp } from './app.component';
 
 import { AppointmentsPage } from '../pages/appointments/appointments';
 import { ProfilePage } from '../pages/profile/profile';
-import { HomePage } from '../pages/home/home';
-import { UsersPage } from '../pages/users/users';
+// import { HomePage } from '../pages/home/home';
+// import { UsersPage } from '../pages/users/users';
 import { UserDetailsPage } from '../pages/user-details/user-details';
 import { UserMoreDetailsPage } from '../pages/user-more-details/user-more-details';
 import { FilterPage } from '../pages/filter/filter';
@@ -25,6 +25,9 @@ import { SettingsPage } from '../pages/settings/settings';
 import { StatsPage } from '../pages/stats/stats';
 import { MyJobsPage } from '../pages/my-jobs/my-jobs';
 import { UserTypePage } from '../pages/user-type/user-type';
+import { SetupPage } from '../pages/setup/setup';
+import { CandidatesPage } from '../pages/candidates/candidates';
+import { JobsPage } from '../pages/jobs/jobs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -39,8 +42,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     MyApp,
     AppointmentsPage,
     ProfilePage,
-    HomePage,
-    UsersPage,
+    // HomePage,
     FilterPage,
     UserDetailsPage,
     UserMoreDetailsPage,
@@ -50,14 +52,16 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     SignupPage,
     OtpPage,
     TermsPage,
-    // JobsPage,
     PostJobsPage,
     AutocompletePage,
     JobDetailsPage,
     SettingsPage,
     StatsPage,
     MyJobsPage,
-    UserTypePage
+    UserTypePage,
+    SetupPage,
+    CandidatesPage,
+    JobsPage,
   ],
   imports: [
     BrowserModule, 
@@ -69,8 +73,7 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     MyApp,
     AppointmentsPage,
     ProfilePage,
-    HomePage,
-    UsersPage,
+    // HomePage,
     FilterPage,
     UserDetailsPage,
     UserMoreDetailsPage,
@@ -80,14 +83,16 @@ import { SocialSharing } from '@ionic-native/social-sharing';
     SignupPage,
     OtpPage,
     TermsPage,
-    // JobsPage,
     PostJobsPage,
     AutocompletePage,
     JobDetailsPage,
     SettingsPage,
     StatsPage,
     MyJobsPage,
-    UserTypePage
+    UserTypePage,
+    SetupPage,
+    CandidatesPage,
+    JobsPage,
   ],
   providers: [
     StatusBar,

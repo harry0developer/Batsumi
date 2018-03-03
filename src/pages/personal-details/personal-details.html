@@ -63,6 +63,18 @@
 
       <ion-row>
         <ion-col col-6>
+            <ion-item>
+              <ion-label floating><i class="fa fa-settings" item-start></i>Type</ion-label>
+              <ion-select [(ngModel)]="data.type" multiple="false">
+                <ion-option>Employer</ion-option>
+                <ion-option>Employee</ion-option>
+              </ion-select>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-6>
           <ion-item >
             <ion-label floating><i class="fa fa-flag" item-start></i>Nationality</ion-label>
             <ion-select [(ngModel)]="data.nationality" multiple="false">

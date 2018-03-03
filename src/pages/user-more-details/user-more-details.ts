@@ -35,8 +35,6 @@ export class UserMoreDetailsPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
- 
-
   
   getRoles(roles){
     if(roles){
@@ -53,6 +51,7 @@ export class UserMoreDetailsPage {
     }
     return ddd;
   }
+
   getEduShortDate(d){
     let _date = new Date(d);
     let ddd = _date.toLocaleString("en", { month: "short", year: "numeric" });

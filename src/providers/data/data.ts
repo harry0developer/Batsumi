@@ -263,9 +263,13 @@ export class DataProvider {
       // data.coords.longitude
      });
   }
-  refreshUsers(){
-    // this.init();
+
+  refreshUsers(){ 
     return this.users;
+  }
+  
+  refreshJobs(){ 
+    return this.jobs;
   }
 
   postData(credentials, type) {
@@ -405,6 +409,7 @@ export class DataProvider {
     let alert = this.alertCtrl.create({
       title: title,
       subTitle: msg,
+      cssClass: "btn",
       buttons: ['Dismiss']
     });
     alert.present();

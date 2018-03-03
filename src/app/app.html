@@ -1,4 +1,4 @@
-<ion-menu [content]="content">
+<ion-menu [content]="content"  persistent="true" >
   <ion-content class="con">
     <div *ngIf="profile">
       <img src="http://placehold.it/100x100" alt="" class="profile">
@@ -6,11 +6,16 @@
       <p>{{profile.title}}
       <br>{{profile.type}}</p> 
     </div>
-    <ion-list>
-      <ion-item menuClose ion-item icon-left (click)="nav.setRoot(pages2.homePage)">
+    <ion-list *ngIf="profile">
+      <ion-item menuClose ion-item icon-left *ngIf="profile.type == 'Employee'" (click)="nav.setRoot(pages2.jobsPage)">
         <ion-icon name="home" item-start></ion-icon>
           Home
       </ion-item>
+      <ion-item menuClose ion-item icon-left *ngIf="profile.type == 'Employer'" (click)="nav.setRoot(pages2.candidatesPage)">
+        <ion-icon name="home" item-start></ion-icon>
+          Home
+      </ion-item>
+      
       <ion-item menuClose ion-item icon-left (click)="nav.setRoot(pages2.appointmentPage)">
         <ion-icon name="calendar" item-start></ion-icon>
           Appointment

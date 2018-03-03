@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, ViewController, NavParams, ModalController } from 'ionic-angular';
 import { OtpPage} from '../otp/otp';
 import { DataProvider } from '../../providers/data/data';
+import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -11,7 +12,6 @@ import { DataProvider } from '../../providers/data/data';
 export class SignupPage {
   data: any = {};
   constructor(public navCtrl: NavController, public dataProvider:DataProvider, public viewCtrl: ViewController, public modalCtrl: ModalController, public navParams: NavParams) {
-    this.data = { email: "", password: "", otp:""};
   }
 
   ionViewDidLoad() {
@@ -19,15 +19,13 @@ export class SignupPage {
   }
 
   dismiss() {
-    this.viewCtrl.dismiss(null);
+    this.navCtrl.setRoot(LoginPage)
   }
 
   openOTPPage(){ 
-    let signupModal = this.modalCtrl.create(OtpPage, {data: this.data});
-    signupModal.onDidDismiss(data => {
-      console.log(data);
-    });
-    signupModal.present();
+
+    this.navCtrl.setRoot(OtpPage, {data: this.data});
+ 
   }
 
   sendOTP(){

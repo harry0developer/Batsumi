@@ -1,5 +1,20 @@
 page-home {
     //starts
+  
+    // ion-content.content{
+    //     background-color: #fff;
+    // }
+    
+    // ion-list-header.item{
+    //     background-color: #009688;
+    //     color: #fff;
+    //     margin-bottom: 0 !important;
+    // } 
+
+    // .left button{
+    //    color: #fff;
+    // }
+
     ul {
         padding: 0px;
       
@@ -46,8 +61,8 @@ page-home {
         width: 100%;
         text-align: center;
         padding: 10px;
-        background-color:none !important;
-    }
+        background:transparent !important;
+    } 
  
     .picture img{
         width: 100px;
@@ -57,36 +72,29 @@ page-home {
         
     } 
      
+    
+    // .item-inner, ion-label.label, i{
+    //     color: #fff !important;
+    //     font-weight: bold;
+    // } 
+
     .main i{
-        margin: 0 !important
+        margin: 0 !important; 
     }
     .main p{
-        font-size: 0.9em;
+        font-size: 1em; 
     }
 
     .job{
-        border: 1px solid #ddd;
         margin: 10px;
         line-height: 1;
+        // border: 2px solid #219688;
     } 
-
-    // .right i, .left i{
-    //     margin-right: 4px !important;
-    // }
-    
-    // .left i.fa-share {
-    //     margin-left: 10px;
-    // }
     
     
-
+    
     //Jobs === 
-    
-    ion-list-header{
-        margin: 0 !important;
-        height: 50px;
-    }
-
+   
     ion-list{
         margin-bottom: 0 !important;
     }

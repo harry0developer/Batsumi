@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
 import { FilterPage } from '../filter/filter';
 import { UserDetailsPage } from '../user-details/user-details';
 import { JobDetailsPage } from '../job-details/job-details';
-// import { ProfilePage } from '../profile/profile';
+import { LoginPage } from '../login/login';
 
 import { DataProvider } from '../../providers/data/data';
 import 'rxjs/add/operator/debounceTime';
@@ -50,7 +50,11 @@ export class HomePage {
   ionViewDidLoad() {  
     this.init()
     this.getJobs();
+     
     this.profile = JSON.parse(localStorage.getItem('user'));
+    // let data = {firstname:"", lastname:"", dob:"", gender:"", nationality:"", race:"", phone:"", address:"", type: "Employer"};
+  //  this.profile = this.navParams.get('data');
+   console.log(this.profile);
     if(this.profile && this.profile.type && this.profile.type == "Employee"){
       this.setFilteredJobs();
       this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
@@ -65,7 +69,9 @@ export class HomePage {
           this.setFilteredUsers();
       });
     }else{
-      console.log("No user profile")
+      console.log("No user profile");
+      localStorage.clear();
+      this.navCtrl.setRoot(LoginPage);
     }
   } 
 

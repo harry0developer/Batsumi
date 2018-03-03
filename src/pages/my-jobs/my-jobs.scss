@@ -1,3 +1,20 @@
 page-my-jobs {
-
+    ion-item.item{
+        margin: 10px 0;
+    }
+ 
+    .posted_date h2{
+        font-size: 1.4em !important;
+        font-weight: bold;
+    }
+     
+    .posted_date {
+        border: 2px solid #009688;
+        padding: 20px;
+        border-radius: 600px;
+        text-align: center;
+        margin-right: 20px !important;
+        width: 90px;
+        height: 90px;
+    }
 }

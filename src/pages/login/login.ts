@@ -6,6 +6,8 @@ import { SignupPage } from '../signup/signup';
 import { HomePage } from '../home/home';
 
 import { DataProvider } from '../../providers/data/data';
+import { JobsPage } from '../jobs/jobs';
+import { CandidatesPage } from '../candidates/candidates';
 
 @IonicPage()
 @Component({
@@ -26,7 +28,12 @@ export class LoginPage {
       this.dataProvider.dismissLoading();
       this.ionEvents.publish("user:loggedIn", this.profile);
       localStorage.setItem('user', JSON.stringify(this.profile));
-      this.navCtrl.setRoot(HomePage);
+      if(this.profile.type == "Employer"){
+        this.navCtrl.setRoot(CandidatesPage);
+      }
+      else{
+        this.navCtrl.setRoot(JobsPage)
+      }
     }else{
       this.dataProvider.dismissLoading();
     }
@@ -49,7 +56,12 @@ export class LoginPage {
         console.log(res.data);
         localStorage.setItem('user', JSON.stringify(res.data));
         this.ionEvents.publish("user:loggedIn", res.data);
-        this.navCtrl.setRoot(HomePage, {user: res.data});
+        if(res.data.type == "Employer"){
+          this.navCtrl.setRoot(CandidatesPage);
+        }
+        else{
+          this.navCtrl.setRoot(JobsPage)
+        }
       }
     }).catch(err => {
       console.log(err);
@@ -59,11 +71,8 @@ export class LoginPage {
   
 
   signup(){ 
-    let loginModal = this.modalCtrl.create(SignupPage);
-    loginModal.onDidDismiss(data => {
-      console.log(data);
-    });
-    loginModal.present();
+    // this.navCtrl.push(SignupPage);
+    this.navCtrl.setRoot(SignupPage);
   }
 
 }

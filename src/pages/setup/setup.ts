@@ -1,33 +1,55 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, ModalController, ViewController, NavParams, ActionSheetController, Events } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController, ModalController, ViewController, NavParams, ActionSheetController, Events, Slides } from 'ionic-angular';
 
 import { DataProvider } from '../../providers/data/data';
 import { TermsPage } from '../terms/terms';
-// import { LoginPage } from '../login/login';
 import { HomePage } from '../home/home';
+
 
 @IonicPage()
 @Component({
-  selector: 'page-personal-details',
-  templateUrl: 'personal-details.html',
+  selector: 'page-setup',
+  templateUrl: 'setup.html',
 })
-export class PersonalDetailsPage {
-  r = Math.floor((Math.random() * 5) + 1);
-  data: any = {firstname:"", lastname:"", dob:"", gender:"", nationality:"", race:"", phone:"", address:"", type: ""};
+export class SetupPage {
+  @ViewChild(Slides) slides: Slides;
+  // data: any = {firstname:"", lastname:"", dob:"", gender:"", nationality:"", race:"", phone:"", address:"", type: ""};
   nationalities: any;
   countries: any;
   user: any;
   titles: any;
+  data: any = {};
+  mode:string = 'vertical';
+  selectedIndex = 0;
+
   constructor(public navCtrl: NavController, public viewCtrl: ViewController, public ionEvents: Events, public dataProvider: DataProvider, 
     public actionSheetCtrl: ActionSheetController, public modalCtrl: ModalController, public navParams: NavParams) {
     }
 
   ionViewDidLoad() {
-    this.dataProvider.presentAlert("Welcome", "Complete your profile details and then you are set.");
-    this.data = this.navParams.get("data");
-    console.log(this.data)
-    this.getCountries();
-    this.getTitles()
+    console.log('ionViewDidLoad SetupPage');
+    // this.dataProvider.presentAlert("Welcome", "Complete your profile details and then you are set.");
+    // this.data = this.navParams.get("data");
+    // console.log(this.data)
+    // this.getCountries();
+    // this.getTitles()
+    
+  }
+
+  selectChange(e) {
+    console.log(e);
+  }
+
+  goNext() {
+    this.slides.slideNext(400);
+  }
+  goPrev() {
+    this.slides.slidePrev(400);
+  }
+
+  login(){
+    localStorage.setItem("user", JSON.stringify(this.data))
+    this.navCtrl.setRoot(HomePage);
   }
 
   getCountries(){
@@ -80,33 +102,9 @@ export class PersonalDetailsPage {
       tc.present();
   }
 
-  // presentActionSheetType() {
-  //   let actionSheet = this.actionSheetCtrl.create({
-  //     title: 'Register as',
-  //     buttons: [
-  //       {
-  //         text: 'Employer - to create jobs', 
-  //         icon: "filing",
-  //         handler: () => {
-  //           console.log('employer clicked');
-  //           this.createProfile('Employer');
-  //         }
-  //       },{
-  //         text: 'Employee - looking for a job',
-  //         icon: "hammer",
-  //         handler: () => {
-  //           console.log('employee clicked');
-  //           this.createProfile('Employee');
-  //         }
-  //       },{
-  //         text: 'Cancel',
-  //         role: 'cancel',
-  //         handler: () => {
-  //           console.log('Cancel clicked');
-  //         }
-  //       }
-  //     ]
-  //   });
-  //   actionSheet.present();
-  // }
+  type(type){
+    this.data.type = type;
+    this.goNext();
+
+  }
 }

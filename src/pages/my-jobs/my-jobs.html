@@ -16,21 +16,22 @@
       <ion-item-divider >
         <h2> Applied Jobs</h2>
       </ion-item-divider>
-      <ion-item text-wrap>
-        <!-- <img src="http://placehold.it/200x200">  -->
+      <ion-item text-wrap> 
         <h2>You haver not applied for any job yet.</h2> 
         <p>All jobs you have applied for will appear and managed here.</p>
       </ion-item>
     </div> 
     <div *ngIf="myJobs.length > 0">
       <ion-item *ngFor="let job of myJobs" tappable (click)="jobDetails(job)">
-        <ion-thumbnail item-start>
-          <img src="http://placehold.it/200x200">
-        </ion-thumbnail>
+        <div class="posted_date" item-start>
+          <h2>23</h2>
+          <p>Views</p>
+        </div>
         <h2 *ngIf="job">{{job.title}}</h2>
         <p *ngIf="job">{{job.category}}</p>
         <p *ngIf="job">{{job.type }} | R{{job.salary}}</p>
-        <button ion-button clear item-end>View</button>
+        <ion-icon name="arrow-forward" item-end></ion-icon>
+        
       </ion-item>
     </div>
   </ion-list> 
@@ -38,25 +39,21 @@
   
   <ion-list *ngIf="profile && profile.type == 'Employer'">
     <div *ngIf="postedJobs && postedJobs.length < 1">
-      <ion-item-divider >
-        <h2> My Posted Jobs</h2>
-      </ion-item-divider>
-      <ion-item text-wrap>
-        <!-- <img src="http://placehold.it/200x200">  -->
+      <ion-item text-wrap> 
         <h2>You haver not posted any job yet.</h2> 
         <p>All your posted jobs will appear and managed here.</p>
       </ion-item>
     </div> 
     <div *ngIf="postedJobs && postedJobs.length > 0">
-      <ion-item-divider> My Posted Jobs</ion-item-divider>
       <ion-item *ngFor="let job of postedJobs" tappable (click)="jobDetails(job)">
-        <ion-thumbnail item-start>
-          <img src="http://placehold.it/200x200">
-        </ion-thumbnail>
+        <div class="posted_date" item-start>
+            <h2>23</h2>
+            <p>Views</p>
+          </div>
         <h2 *ngIf="job">{{job.title}}</h2>
         <p *ngIf="job">{{job.category}}</p>
         <p *ngIf="job">{{job.type }} | R{{job.salary}}</p>
-        <button ion-button clear item-end>View</button>
+        <ion-icon name="arrow-forward" item-end></ion-icon>
       </ion-item>
     </div>
   </ion-list> 

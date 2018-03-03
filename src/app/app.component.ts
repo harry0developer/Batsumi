@@ -3,15 +3,17 @@ import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
+import { JobsPage } from '../pages/jobs/jobs';
 import { ProfilePage } from '../pages/profile/profile';
 import { AppointmentsPage } from '../pages/appointments/appointments';
 import { SettingsPage } from '../pages/settings/settings';
 import { TermsPage } from '../pages/terms/terms';
 import { LoginPage } from '../pages/login/login';
+import { SetupPage } from '../pages/setup/setup';
 import { MyJobsPage } from '../pages/my-jobs/my-jobs';
 // import { UserTypePage } from '../pages/user-type/user-type';
 // import { PersonalDetailsPage } from '../pages/personal-details/personal-details';
+import { CandidatesPage } from '../pages/candidates/candidates';
 
 @Component({
   templateUrl: 'app.html'
@@ -33,7 +35,8 @@ export class MyApp {
     });
 
     this.pages2 = {
-      homePage: HomePage,
+      jobsPage: JobsPage,
+      candidatesPage:CandidatesPage,
       profilePage: ProfilePage,
       appointmentPage: AppointmentsPage,
       myJobsPage: MyJobsPage,

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { PersonalDetailsPage } from '../personal-details/personal-details';
- 
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -33,9 +33,11 @@ export class UserTypePage {
 
   typeModal(type){
     this.data.type = type;
+    // this.navCtrl.push(PersonalDetailsPage, {data: this.data});
+
     let setupModal = this.modalCtrl.create(PersonalDetailsPage, {data: this.data});
     setupModal.onDidDismiss(data => {
-      console.log(data);
+      this.navCtrl.setRoot(HomePage);
     });
     setupModal.present();
   }
