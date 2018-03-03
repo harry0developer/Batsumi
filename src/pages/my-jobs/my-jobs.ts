@@ -16,7 +16,6 @@ export class MyJobsPage {
   profile: any;
   appliedJobs: any;
   postedJobs: any;
-
   constructor(public navCtrl: NavController,public ionEvents: Events, public dataProvider: DataProvider, public navParams: NavParams) {
     this.profile = JSON.parse(localStorage.getItem("user"));
     this.getAllJobs();  
@@ -28,8 +27,9 @@ export class MyJobsPage {
     this.ionEvents.subscribe("user:applied", (res) => {
       this.getAppliedJobs(res);  
     });
-
+   
   }
+ 
  
 
   mapJobs(jobs, aJobs){
@@ -60,19 +60,20 @@ export class MyJobsPage {
  
   getMyPostedJobs(){
     let list = [];
+    this.countApplied = 0;
     this.dataProvider.loadJobs().then(res => {
       this.jobs = res;
       res.forEach(job => {
         if(job.user_id_fk == this.profile.user_id){
           list.push(job);
-          console.log(job);
         }
       });
+      
+      
       this.postedJobs = list;
     })
   }
 
- 
 
   getAllJobs(){
     this.dataProvider.loadJobs().then(all => {
@@ -81,7 +82,8 @@ export class MyJobsPage {
       this.dataProvider.loadAppliedJobs().then(app => {
         this.appliedJobs = app;
         this.myJobs = this.mapJobs(all,app);
-      })
+      });
+      
     })
   }
 

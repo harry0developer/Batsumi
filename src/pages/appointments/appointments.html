@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="dark">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -7,9 +7,9 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
   <ion-list *ngIf="profile.type == 'Employer'">
-    <ion-item-divider padding color="light">List of People you requested service from:</ion-item-divider>
+    <!-- <ion-item-divider padding color="light">List of People you requested service from:</ion-item-divider> -->
     <ion-item *ngFor="let user of appointments" tappable (click)="viewUserProfile(user)">
       <ion-avatar item-start>
         <img src="http://placehold.it/200x200">

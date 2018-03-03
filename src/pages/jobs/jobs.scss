@@ -20,7 +20,7 @@ page-jobs {
     }
 
     ion-label i{
-        color: #009688
+        color: #009688;
     }
 
     ion-list-header.item{
@@ -34,7 +34,7 @@ page-jobs {
 
 
    .button{
-    color: #fff !important;
+        color: #fff !important;
    }
 
    .spinner-container {
@@ -42,6 +42,7 @@ page-jobs {
         text-align: center;
         padding: 10px;
         background:transparent !important;
+        color: #fff !important;
     } 
 
 }
