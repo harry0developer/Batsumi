@@ -43,20 +43,22 @@ export class CandidatesPage {
     public navParams: NavParams, public dataProvider: DataProvider) {
     this.searchControl = new FormControl();
 
+    this.init()
   }
   
 
   
   
   ionViewDidLoad() {  
-    this.init()
+
     this.profile = JSON.parse(localStorage.getItem('user')); 
-      this.setFilteredUsers();
-      this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
-          this.searching = false;
-          this.setFilteredUsers();
-      });
-    }
+    this.setFilteredUsers();
+    this.searchControl.valueChanges.debounceTime(700).subscribe(search => {
+        this.searching = false;
+        this.setFilteredUsers();
+    });
+
+  }
 
 
   init(){

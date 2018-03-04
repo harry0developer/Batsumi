@@ -15,41 +15,29 @@ export class StatsPage {
   appliedJobs: any;
   profile: any;
   myJobs: any;
+  stats: string = "views";
   constructor(public navCtrl: NavController, public navParams: NavParams, public dataProvider: DataProvider) {
   }
   
   ionViewDidLoad() {
     this.job = this.navParams.get('job');
     this.profile = JSON.parse(localStorage.getItem('user'));
-    console.log('ionViewDidLoad StatsPage');
-    this.getUsersApplied();
+    this.mapUsersByJobs();
   }
-
-  getUsersApplied(){
-    console.log("Getting applied users");
-    
-    this.dataProvider.loadAppliedJobs().then(res => {
-      this.appliedJobs = res;
-      this.appliedUsers = [];
-      let list = [];
-      res.map(job => {
-        if(job.employer_id_fk == this.profile.user_id){
-           this.mapUsersByJobs(job);
-        }
-      }) 
-    })
-  }
+ 
   
-  mapUsersByJobs(job){
-    let list = [];
+  mapUsersByJobs(){
+    let list = []; 
     this.dataProvider.loadUsers().then(users => {
       users.forEach(user => {
-        if(user.user_id == job.user_id_fk && this.profile.user_id == job.employer_id_fk){
-          this.appliedUsers.push(user);
-        }
+        this.job.viewedUsers.forEach(vUser => {
+          if(user.user_id == vUser.user_id_fk){  
+            list.push(user);
+          } 
+        });
       });
+      this.job.viewedUsers = list;    
     });
-    
   }
 
 }

@@ -17,4 +17,13 @@ page-my-jobs {
         width: 90px;
         height: 90px;
     }
+
+    .stats{
+        text-align: center;
+        padding: 10px;
+        border-right: 1px solid #009688;
+    }
+    .stats:first-child{
+        border-bottom: 1px solid #009688;
+    }
 }

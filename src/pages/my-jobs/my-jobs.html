@@ -46,15 +46,21 @@
     </div> 
     <div *ngIf="postedJobs && postedJobs.length > 0">
       <ion-item *ngFor="let job of postedJobs" tappable (click)="jobDetails(job)">
-        <div class="posted_date" item-start>
-            <h2>23</h2>
-            <p>Views</p>
+        <div  item-start>
+          <div *ngIf="job && job.views" class="stats">
+            <h2>{{job.views}}</h2>
+            <p> Viewed</p>
           </div>
+         <div class="stats">
+           <h2 *ngIf="job && job.appliedUsers">{{job.appliedUsers.length}}</h2>
+           <p>Applied</p>
+          </div>
+        </div>
         <h2 *ngIf="job">{{job.title}}</h2>
         <p *ngIf="job">{{job.category}}</p>
         <p *ngIf="job">{{job.type }} | R{{job.salary}}</p>
         <ion-icon name="arrow-forward" item-end></ion-icon>
       </ion-item>
-    </div>
+    </div> 
   </ion-list> 
 </ion-content>
