@@ -60,7 +60,7 @@ export class MyJobsPage {
  
   getMyPostedJobs(){
     let list = [];
-    this.countApplied = 0;
+    // this.countApplied = 0;
     this.dataProvider.loadJobs().then(res => {
       this.jobs = res;
       res.forEach(job => {
@@ -68,8 +68,6 @@ export class MyJobsPage {
           list.push(job);
         }
       });
-      
-      
       this.postedJobs = list;
     })
   }

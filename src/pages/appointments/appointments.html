@@ -27,7 +27,7 @@
   </ion-list> 
 
   <ion-list *ngIf="profile.type == 'Employee'">
-    <ion-item-divider padding color="light">List of Employers who showed interest in you:</ion-item-divider>
+    <!-- <ion-item-divider padding color="light">List of Employers who showed interest in you:</ion-item-divider> -->
     <ion-item *ngFor="let user of appointments" tappable (click)="viewUserProfile(user)">
       <ion-avatar item-start>
         <img src="http://placehold.it/200x200">

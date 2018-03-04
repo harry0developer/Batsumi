@@ -68,6 +68,7 @@ export class CandidatesPage {
         }
       });
       this.users = usa;
+      console.log(usa);
     }).catch(e => {
       console.log(e);
     });
@@ -138,7 +139,12 @@ export class CandidatesPage {
     let userExperience = this.getUserExperience(user);
     let userSkills = this.getUserSkills(user);
     let userEducation = this.getUserEducation(user);
-    this.navCtrl.push(UserDetailsPage, {user: user});
+    
+    console.log(userExperience);
+    console.log(userSkills);
+    console.log(userEducation);
+
+    this.navCtrl.push(UserDetailsPage, {user: user, page: "Candidates"});
   }
  
 

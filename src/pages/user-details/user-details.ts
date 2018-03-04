@@ -46,9 +46,10 @@ export class UserDetailsPage {
     this.user = this.navParams.get('user');
     this.profile = JSON.parse(localStorage.getItem('user'));
     this.page = this.navParams.get('page');
-    this.skills = this.dataProvider.getUserSkills(this.profile);
-    this.experience = this.dataProvider.getUserExperience(this.profile);
-    this.education = this.dataProvider.getUserEducation(this.profile);
+    
+    this.skills = this.dataProvider.getUserSkills(this.user);
+    this.experience = this.dataProvider.getUserExperience(this.user);
+    this.education = this.dataProvider.getUserEducation(this.user);
     
     this.dataProvider.loadRaters().then(res => {
       this.raters = res;
@@ -96,7 +97,7 @@ export class UserDetailsPage {
   }
  
   loadUserMoreDetails(cat){
-    let contactModal = this.modalCtrl.create(UserMoreDetailsPage, {user: this.profile, experience: this.experience, education: this.education, skills: this.skills, category: cat});
+    let contactModal = this.modalCtrl.create(UserMoreDetailsPage, {user: this.user, experience: this.experience, education: this.education, skills: this.skills, category: cat});
     contactModal.present();
   }
  

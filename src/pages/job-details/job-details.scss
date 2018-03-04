@@ -1,5 +1,7 @@
 .ios, .md {
   page-job-details{
+    $primary_color: #009688;
+
     .scroll {
       height: 100%
     }
@@ -7,26 +9,44 @@
     ion-item-divider{
       font-size: 1.6em;
       color: #292929;
-    }  
+    } 
+
+    ion-item.item{
+      margin: 5px 0;
+    }
       
-    .banner{
-      text-align: center;
-      background-color: #ccc;
-      height: 45%;
-      padding-top: 50px;
-      color: #fff;
-    }
-    .banner h2{
-      margin-bottom: 0;
-    }
-    .banner p{
-      margin-top: 0;
+    ion-badge.badge{
+      background-color: $primary_color;
+      padding: 5px;
+      margin: 2px;
     }
 
-    .info h2{
-      font-weight: normal;
-      font-size: 1.5em;
+    .job ion-icon{
+      color: $primary_color
     }
+
+    .banner{
+      text-align: center;
+      background-color: #fff;
+      height: 45%;
+      padding-top: 50px;
+      color: $primary_color;
+    }
+    .banner img{
+      width: 20%;
+    }
+    .banner h2{
+      margin: 5px 0;
+    }
+    .banner p{
+      margin: 0;
+    }
+
+    h2{
+      font-weight: bold;
+      font-size: 1.4em !important;
+    }
+
     .info p{
       font-weight: normal;
       font-size: 1em;

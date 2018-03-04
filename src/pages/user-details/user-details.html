@@ -17,27 +17,9 @@
         <p *ngIf="user.rating == 4">&#9733;&#9733;&#9733;&#9733;&#9734;</p>
         <p *ngIf="user.rating == 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p> 
     </div>
-    <!-- <div>
-      <p *ngIf="rateState == 'not rated'"> {{rateState}}</p>
-      <ion-grid class="rate" *ngIf="page == 'AppointmentsPage'">
-        <ion-row padding>
-          <ion-col col-6>
-            <button ion-button [outline]="rateState == 'negative'" color="dark" icon-start block (click)="checkRates(user, 'positive')">
-              <ion-icon name="thumbs-up"></ion-icon>
-              Rate up
-            </button>
-          </ion-col>
-          <ion-col col-6> 
-            <button ion-button [outline]="rateState == 'positive'" color="dark" icon-start block (click)="checkRates(user, 'negative')">
-              <ion-icon name="thumbs-down"></ion-icon>
-              Rate down
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </div> -->
+ 
   </div>
-  <ion-list padding>
+  <ion-list *ngIf="user" class="info" padding>
     <ion-item (click)="loadUserMoreDetails('Personal info')">
         <i class="fa fa-2x fa-user" item-start></i>
         <h2>Personal info</h2>
@@ -69,11 +51,11 @@
   </ion-list>
 
      
-  <div padding [hidden]="applied">
+  <div padding class="but" [hidden]="applied">
     <button ion-button color="dark" block (click)="offerUserEmployment(user)">Offer Employement</button>
   </div>
 
-  <div padding [hidden]="!applied">
+  <div padding class="but" [hidden]="!applied">
     <button ion-button color="dark" block (click)="removeUserEmployment(user)">Withdraw Application</button>
   </div>
  
